@@ -1,0 +1,121 @@
+{% extends "background.html" %}
+{% block content %}
+
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['line']});
+      google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'YEAR');
+      data.addColumn('number', 'Values');
+
+      data.addRows({{ series |safe}});
+
+      var options = {
+        chart: {
+          title: 'The Average Value Time Series of All Countries',
+          subtitle: ' {{ particular_index }}'
+        },
+        width: 900,
+        height: 500,
+
+      };
+
+      var chart = new google.charts.Line(document.getElementById('line_top_x'));
+
+      chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+  </script>
+
+
+
+
+
+    <div>Here is informartion of : {{ particular_index }}</div>
+
+
+    <div>{{ year_range }}</div>
+
+    <table border="6">
+<caption>Overall view</caption>
+<tr>
+  <td>Number of countries</td>
+  <td>{{ country_number }}</td>
+</tr>
+<tr>
+  <td>Year begin</td>
+  <td>{{ min_year }}</td>
+</tr>
+    <tr>
+  <td>Year end</td>
+  <td>{{ max_year }}</td>
+</tr>
+    <tr>
+  <td>Max value</td>
+  <td>{{ max_value }}</td>
+</tr>
+    <tr>
+  <td>Min value</td>
+  <td>{{ min_value }}</td>
+</tr>
+</table>
+
+        <table border="6">
+<caption>With greatest value</caption>
+<tr>
+  <td>Country Name</td>
+  <td>{{ max_value_item[0] }}</td>
+</tr>
+<tr>
+  <td>Year</td>
+  <td>{{ max_value_item[2] }}</td>
+</tr>
+    <tr>
+  <td>Value</td>
+  <td>{{ max_value_item[3] }}</td>
+</tr>
+</table>
+
+
+            <table border="6">
+<caption>With lowest value</caption>
+<tr>
+  <td>Country Name</td>
+  <td>{{ min_value_item[0] }}</td>
+</tr>
+<tr>
+  <td>Year</td>
+  <td>{{ min_value_item[2] }}</td>
+</tr>
+    <tr>
+  <td>Value</td>
+  <td>{{ min_value_item[3] }}</td>
+</tr>
+</table>
+
+
+ <div id="line_top_x"></div>
+
+
+    <div><form action="/particular_index/particular_country" method="post">
+          <select name="country">
+        {% for country in countries %}
+            <option value="{{ country }}">{{ country }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="country">
+    </form></div>
+
+    <div><form action="/particular_index/particular_year" method="post">
+         <select name="year">
+        {% for year in years %}
+            <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="year">
+    </form></div>
+
+{% endblock %}

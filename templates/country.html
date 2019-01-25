@@ -1,0 +1,53 @@
+{% extends "background.html" %}
+{% block content %}
+
+<html>
+<head>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['line']});
+      google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'YEAR');
+      data.addColumn('number', 'Values');
+
+      data.addRows({{ series |safe}});
+
+      var options = {
+        chart: {
+          title: 'The Time Series of {{ country }} ',
+          subtitle: ' {{ indecator }} ',
+          legend: { position: 'bottom' }
+        },
+        width: 900,
+        height: 500,
+
+      };
+
+      var chart = new google.charts.Line(document.getElementById('line_top_x'));
+
+      chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+  </script>
+</head>
+<body>
+    <h1>{{ country }}</h1>
+    <h1>Name: {{ name }}</h1><br>
+    <p>Language: {{ language }}</p><br>
+    <p>Region: {{ region }}</p><br>
+    <p>Capital: {{ capital }}</p><br>
+    <p>Population: {{ population }}</p><br>
+    <p>Area: {{ area }}</p><br>
+    <img src="{{ flag }}"  alt="flag" height="200" width="400" />
+    <br><br><br>
+  <div id="line_top_x"></div>
+</body>
+</html>
+
+
+
+{% endblock %}
