@@ -8,3 +8,4 @@ GoogleAppEngineCloudStorageClient==1.9.15.0
 Jinja2==2.10
 google-api-core==1.7.0
 requests==2.21.0
+pip==19.0.1
