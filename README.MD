@@ -3,6 +3,7 @@
 
 
 在文件夹输入
+python -m pip install --upgrade pip
 pip install -t lib -r requirements.txt
 
 
