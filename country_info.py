@@ -3,9 +3,9 @@
 # Time     : 25/01/2019
 
 import requests
-# import requests_toolbelt.adapters.appengine
-#
-# requests_toolbelt.adapters.appengine.monkeypatch()
+import requests_toolbelt.adapters.appengine
+
+requests_toolbelt.adapters.appengine.monkeypatch()
 
 
 def get_country(code):
@@ -29,5 +29,3 @@ def get_country(code):
     area=  r["area"]
     return name,langeuage,region,capital,population,flag,area
 
-
-# print get_country("CN")

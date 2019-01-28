@@ -4,6 +4,12 @@ threadsafe: true
 
 handlers:
 
+- url: /assets/
+  static_dir: templates/assets/
+
+
+- url: /.*/assets/
+  static_dir: templates/assets/
 
 - url: /.*
   script: app.app
@@ -14,7 +20,3 @@ libraries:
   
 - name: ssl
   version: latest
-
-
-- name: numpy
-  version: "1.6.1"

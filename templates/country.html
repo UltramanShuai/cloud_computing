@@ -1,8 +1,91 @@
-{% extends "background.html" %}
+{% extends "index.html" %}
 {% block content %}
 
-<html>
-<head>
+
+    <div class="row">
+        <div class="col">
+            <h1 class="display-1 text-monospace text-center shadow-lg" style="margin-right: auto;">{{ country }}</h1>
+            <hr style="height: 6px;color: rgba(255,255,255,0.4);background-color: #465765;">
+        </div>
+    </div>
+    <div></div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-xl-5 offset-xl-1">
+                    <div>
+                        <ul class="nav nav-tabs"></ul>
+                        <div class="tab-content">
+                            <div class="tab-pane" role="tabpanel" id="tab-1">
+                                <p>Content for tab 1.</p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <<table class="table">
+                            <thead>
+                                <tr></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Language:</td>
+                                    <td> {% for lan in  language  %}
+        {{ lan }}
+        {% endfor %}</td>
+                                </tr>
+                                <tr>
+                                    <td>Region:</td>
+                                    <td>{{ region }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Capital City:</td>
+                                    <td>{{ capital }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Population:</td>
+                                    <td>{{ population }}<td>
+                                </tr>
+                                <tr>
+                                    <td>Area:</td>
+                                    <td>{{ area }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xl-6"><img img src="{{ flag }}" height="250px" alt="flag" style="background-position: center;"></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% if len_series %}
+                        <h1 class="text-center">Time Series Chart</h1>
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12"><div id="line_top_x" style="width: 100%;"></div></div>
+            </div>
+             {% else %}
+                        <hr color="black">
+                        <h3 align="center"> For indicator: {{ indecator }} of {{ name }}</h3>
+                        <h3 align="center">There are only on year available: {{ series.split(",")[0].lstrip('[["').rstrip('"') }}</h3>
+                        <h3 align="center">With value: {{ series.split(",")[1].rstrip(']]') }}</h3>>
+                         </div>
+            </div>
+
+                    {% endif %}
+        </div>
+    </div>
+    <br><br>
+
+
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -23,31 +106,39 @@
           subtitle: ' {{ indecator }} ',
           legend: { position: 'bottom' }
         },
-        width: 900,
         height: 500,
 
       };
 
       var chart = new google.charts.Line(document.getElementById('line_top_x'));
 
-      chart.draw(data, google.charts.Line.convertOptions(options));
+      chart.draw(data, options);
     }
   </script>
-</head>
-<body>
-    <h1>{{ country }}</h1>
-    <h1>Name: {{ name }}</h1><br>
-    <p>Language: {{ language }}</p><br>
-    <p>Region: {{ region }}</p><br>
-    <p>Capital: {{ capital }}</p><br>
-    <p>Population: {{ population }}</p><br>
-    <p>Area: {{ area }}</p><br>
-    <img src="{{ flag }}"  alt="flag" height="200" width="400" />
-    <br><br><br>
-  <div id="line_top_x"></div>
-</body>
-</html>
 
+{##}
+{#    <h1>{{ country }}</h1>#}
+{#    <h1>Name: {{ name }}</h1><br>#}
+{#    <p>Language:#}
+{#        {% for lan in  language  %}#}
+{#        {{ lan }}#}
+{#        {% endfor %}#}
+{#    </p><br>#}
+{#    <p>Region: {{ region }}</p><br>#}
+{#    <p>Capital: {{ capital }}</p><br>#}
+{#    <p>Population: {{ population }}</p><br>#}
+{#    <p>Area: {{ area }}</p><br>#}
+{#    <img src="{{ flag }}" alt="flag" height="200" width="400">#}
+{#    <br><br><br>#}
+{#  <div id="line_top_x"></div>#}
+{##}
+
+
+
+
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 
 
 {% endblock %}

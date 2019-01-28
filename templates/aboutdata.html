@@ -1,0 +1,34 @@
+{% extends "index.html" %}
+{% block content %}
+<br><br>
+    <div class="team-grid">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Could Computing Assignment 2</h2>
+                <p class="text-center" style="color: rgb(255,255,255);background-color: #020202;">Thanks for vistiting our appication.</p>
+            </div>
+            <div class="row people" style="background-color: #5b5b5b;">
+                <div class="col-md-4 col-lg-5 offset-lg-0 item" style="background-color: #c1bfbf;">
+                    <h3 class="text-center name">DATA</h3>
+                    <h5 class="text-center name"></h5>
+                    <p>The data come from &nbsp;google&nbsp;</p>
+                    <p>bigquery public data.</p>
+                    <p>Data ID:&nbsp;<br><br>bigquery-public-data:world_bank_health_population<br><br><br></p>
+                </div>
+                <div class="col-md-4 col-lg-4 item" style="background-color: #e7e7e7;">
+                    <h3 class="text-center name">Country info.</h3>
+                    <p>Country info. used by our application is collect from&nbsp;<strong>restcountries API.</strong></p>
+                    <p>https://restcountries.eu/</p>
+                </div>
+                <div class="col-md-4 col-lg-3 item" style="background-color: #c1bfbf;">
+                    <h3 class="text-center name">User Location</h3>
+                    <p>User location used by our web is deal with by&nbsp;iplocate API.</p>
+                    <p>https://www.iplocate.io/</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <br><br>
+{% endblock %}
