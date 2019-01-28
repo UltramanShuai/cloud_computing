@@ -1,38 +1,38 @@
 {% extends "index.html" %}
 {% block content %}
 
-<head>
+    <head>
 
-    <div align="center">
-        <br>
-        <h1>The world map of {{ be_chosen }} in {{ year }}</h1>
-        <br><br>
-    </div>
+        <div align="center">
+            <br>
+            <h1>The world map of {{ be_chosen }} in {{ year }}</h1>
+            <br><br>
+        </div>
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', {
-            'packages': ['geochart'],
-            'mapsApiKey': '{your key}'
-        });
-        google.charts.setOnLoadCallback(drawRegionsMap);
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {
+                'packages': ['geochart'],
+                'mapsApiKey': '{your key}'
+            });
+            google.charts.setOnLoadCallback(drawRegionsMap);
 
-        function drawRegionsMap() {
+            function drawRegionsMap() {
 
 
-            var data = google.visualization.arrayToDataTable(
-                {{ geo|safe }}
-            )
+                var data = google.visualization.arrayToDataTable(
+                    {{ geo|safe }}
+                )
 
-            var options = {backgroundColor: '#81d4fa',};
+                var options = {backgroundColor: '#81d4fa',};
 
-            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+                var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
-            chart.draw(data, options);
-        }
-    </script>
-</head>
-<body>
-<div id="regions_div" style="width: 100%; height: 800px; background-color: #fff;border: 1px solid #ccc;"></div>
-</body>
+                chart.draw(data, options);
+            }
+        </script>
+    </head>
+    <body>
+    <div id="regions_div" style="width: 100%; height: 800px; background-color: #fff;border: 1px solid #ccc;"></div>
+    </body>
 {% endblock %}

@@ -2,7 +2,7 @@
 {% block content %}
 
 
-<body>
+    <body>
     <div>
         <div class="container">
             <div class="row">
@@ -13,64 +13,80 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4"> <div align="center"><caption>data info.</caption></div>
+                <div class="col-md-4">
+                    <div align="center">
+                        <caption>data info.</caption>
+                    </div>
 
-    <table border="6" align="center">
-<tbody><tr>
-  <td>Number of countries</td>
-  <td>{{ country_number }}</td>
-</tr>
-<tr>
-  <td>Year begin</td>
-  <td>{{ min_year }}</td>
-</tr>
-    <tr>
-  <td>Year end</td>
-  <td>{{ max_year }}</td>
-</tr>
-    <tr>
-  <td>Max value</td>
-  <td>{{ max_value }}</td>
-</tr>
-    <tr>
-  <td>Min value</td>
-  <td>{{ min_value }}</td>
-</tr>
-</tbody></table></div>
-
-                <div class="col-md-4" > <div align="center"><caption>Item with greatest value</caption></div>
                     <table border="6" align="center">
-<tbody><tr>
-  <td>Country Name</td>
-  <td>{{ max_value_item[0] }}</td>
-</tr>
-<tr>
-  <td>Year</td>
-  <td>{{ max_value_item[2] }}</td>
-</tr>
-    <tr>
-  <td>Value</td>
-  <td>{{ max_value_item[3] }}</td>
-</tr>
-</tbody></table></div>
+                        <tbody>
+                        <tr>
+                            <td>Number of countries</td>
+                            <td>{{ country_number }}</td>
+                        </tr>
+                        <tr>
+                            <td>Year begin</td>
+                            <td>{{ min_year }}</td>
+                        </tr>
+                        <tr>
+                            <td>Year end</td>
+                            <td>{{ max_year }}</td>
+                        </tr>
+                        <tr>
+                            <td>Max value</td>
+                            <td>{{ max_value }}</td>
+                        </tr>
+                        <tr>
+                            <td>Min value</td>
+                            <td>{{ min_value }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-md-4">
+                    <div align="center">
+                        <caption>Item with greatest value</caption>
+                    </div>
+                    <table border="6" align="center">
+                        <tbody>
+                        <tr>
+                            <td>Country Name</td>
+                            <td>{{ max_value_item[0] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Year</td>
+                            <td>{{ max_value_item[2] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Value</td>
+                            <td>{{ max_value_item[3] }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
 
-                <div class="col-md-4" align="center"> <caption>Item with lowest value</caption><table border="6" align="center">
+                <div class="col-md-4" align="center">
+                    <caption>Item with lowest value</caption>
+                    <table border="6" align="center">
 
-<tbody><tr>
-  <td>Country Name</td>
-  <td>{{ min_value_item[0] }}</td>
-</tr>
-<tr>
-  <td>Year</td>
-  <td>{{ min_value_item[2] }}</td>
-</tr>
-    <tr>
-  <td>Value</td>
-  <td>{{ min_value_item[3] }}</td>
-</tr>
-</tbody></table>
-</div>
+                        <tbody>
+                        <tr>
+                            <td>Country Name</td>
+                            <td>{{ min_value_item[0] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Year</td>
+                            <td>{{ min_value_item[2] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Value</td>
+                            <td>{{ min_value_item[3] }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -80,7 +96,7 @@
                 <div class="col-md-12">
                     <br><br>
                     {% if len_series %}
-                    <div id="line_top_x"  style="width: 100%;"></div>
+                        <div id="line_top_x" style="width: 100%;"></div>
                     {% else %}
                         <hr color="black">
                         <h3 align="center"> For indicator: {{ particular_index }} of the world</h3>
@@ -101,61 +117,63 @@
                 <div class="col-md-6">
                     <form action="/particular_index/particular_country" method="post">
                         <select name="country" class="form-control"> {% for country in countries %}
-                     <option value="{{ country }}">{{ country }}</option>
-                     {% endfor %}
+                            <option value="{{ country }}">{{ country }}</option>
+                        {% endfor %}
                         </select>
                         <div class="col" style="padding-top: 10px;">
                             <button class="btn btn-primary btn-lg d-lg-flex"
-                                    type="submit" style="margin-left: auto;margin-right: auto;">Go For Country</button></div></form>
+                                    type="submit" style="margin-left: auto;margin-right: auto;">Go For Country
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-md-6">
                     <form action="/particular_index/particular_year" method="post">
                         <select name="year" class="form-control">{% for year in years %}
-            <option value="{{ year }}">{{ year }}</option>
-        {% endfor %}</select>
+                            <option value="{{ year }}">{{ year }}</option>
+                        {% endfor %}</select>
                         <div class="col" style="padding-top: 10px;">
                             <button class="btn btn-primary btn-lg d-lg-flex"
-                                    type="submit" style="margin-left: auto;margin-right: auto;">Go For Year</button></div></form>
+                                    type="submit" style="margin-left: auto;margin-right: auto;">Go For Year
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     <br><br><br><br><br>
-      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['line']});
-      google.charts.setOnLoadCallback(drawChart);
+        google.charts.load('current', {'packages': ['line']});
+        google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart() {
+        function drawChart() {
 
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'YEAR');
-      data.addColumn('number', 'Values');
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'YEAR');
+            data.addColumn('number', 'Values');
 
-      data.addRows({{ series |safe}});
+            data.addRows({{ series |safe}});
 
-      var options = {
-        chart: {
-          title: 'The Average Value Time Series of All Countries',
-          subtitle: ' {{ particular_index }}'
-        },
-        height: 500,
+            var options = {
+                chart: {
+                    title: 'The Average Value Time Series of All Countries',
+                    subtitle: ' {{ particular_index }}'
+                },
+                height: 500,
 
-      };
+            };
 
-      var chart = new google.charts.Line(document.getElementById('line_top_x'));
+            var chart = new google.charts.Line(document.getElementById('line_top_x'));
 
-      chart.draw(data, google.charts.Line.convertOptions(options));
-    }
-  </script>
-
-
-
-
+            chart.draw(data, google.charts.Line.convertOptions(options));
+        }
+    </script>
 
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-</body>
+    </body>
 
 {% endblock %}

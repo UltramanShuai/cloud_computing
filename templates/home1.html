@@ -6,8 +6,10 @@
         <div class="container">
             <div class="intro">
                 <h2 class="text-center">Online World Health Indicators Analysis</h2>
-                <p class="text-center">First, welcome to the cloud app. By using the app, you can explore health indicators in different countries over different time periods.
-                    You can also see information of other users interest by click [action analysis] in the top right corner of the web.
+                <p class="text-center">First, welcome to the cloud app. By using the app, you can explore health
+                    indicators in different countries over different time periods.
+                    You can also see information of other users interest by click [action analysis] in the top right
+                    corner of the web.
                     So step one : choose a health indicator which you are interested, Search! </p>
             </div>
         </div>
@@ -15,41 +17,20 @@
 
             <form action="/particular_index" method="post">
                 <select name="health_index" class="form-control">
-                {% for index in health_indexs %}
-                    <option value="{{ index }}">{{ index }}</option>
-                {% endfor %}
+                    {% for index in health_indexs %}
+                        <option value="{{ index }}">{{ index }}</option>
+                    {% endfor %}
                 </select>
-                <div class="col" style="padding-top: 10px;"><button class="btn btn-primary btn-lg d-lg-flex" type="submit" style="margin-left: auto;margin-right: auto;">Search</button></div>
-                </form>
+                <div class="col" style="padding-top: 10px;">
+                    <button class="btn btn-primary btn-lg d-lg-flex" type="submit"
+                            style="margin-left: auto;margin-right: auto;">Search
+                    </button>
+                </div>
+            </form>
 
         </div>
     </div>
     <div></div>
-
-
-
-
-
-
-{#    <form action="/particular_index" method="post">#}
-{#    <select name="health_index">#}
-{#        {% for index in health_indexs %}#}
-{#            <option value="{{ index }}">{{ index }}</option>#}
-{#        {% endfor %}#}
-{#    </select>#}
-{#    <input type="submit" value="Go">#}
-{#    </form>#}
-{#    <a href="https://www.w3schools.com/html/">link text</a>#}
-{#    <form action="/action">#}
-{#    <input type="submit" value="action">#}
-{#    </form>#}
-{##}
-{#    <script src="assets/js/jquery.min.js"></script>#}
-{#    <script src="assets/bootstrap/js/bootstrap.min.js"></script>#}
-{##}
-
-
-
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
