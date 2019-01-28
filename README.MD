@@ -1,26 +1,34 @@
-第一步：
-下载文件
+1.
+clone the file.
 
-
-在文件夹输入
+2. 
+open the command line in the file and input:
 python -m pip install --upgrade pip  
 
-
+3.
+then input:
 
 pip install -t lib -r requirements.txt
 
+4.
+creat a project in google cloud 
 
-创建project 在google cloud 
+5. 
+create a bucket in your project,see:
+https://cloud.google.com/storage/
 
+6.
+open storage.py and change '{Your bucket id}' into the ‘bucket id’ you create before.
 
-创建一个bucket https://cloud.google.com/storage/
+7.
+Get your google map api key, see:
+https://cloud.google.com/maps-platform/
 
-打开 storage.py 将'{Your bucket id}' 换成你的bucket id
+8.
+open files /tempaletes/poly_map.html and action.html change {your key} into your google map key.
 
+9.
+Input gcloud app deploy in the commond line under the file which contains .yaml
 
-创建google地图key https://cloud.google.com/maps-platform/
-打开 tempaletes/poly_map.html 和 action.html 将 {your key} 换成你自己的key 
-
-
-
-打开 commond line  输入 gcloud app deploy （有yaml 的目录下）
+10.
+open the application web.
