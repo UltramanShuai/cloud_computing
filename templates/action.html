@@ -1,13 +1,13 @@
 {% extends "index.html" %}
 {% block content %}
 
-    <head>
+<head>
 
-        <title>Analysis</title>
+    <title>Analysis</title>
 
-    </head>
+</head>
 
-    <body>
+<body>
     <div>
         <br>
         <div class="container">
@@ -18,10 +18,10 @@
             </div>
             <div class="row">
                 <div class="col-md-6" align="center">
-                    <div id="piechart"></div>
+                    <div id="piechart" ></div>
                 </div>
                 <div class="col-md-6" align="center">
-                    <div id="Anthony_chart_div"></div>
+                    <div id="Anthony_chart_div" ></div>
                 </div>
             </div>
         </div>
@@ -35,10 +35,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="text-center">
-                        <div id="indchart_values"
-                             style="width: auto; height: 500px; margin-right: auto;margin-left: auto;"></div>
-                    </h1>
+                    <h1 class="text-center"><div id="indchart_values" style="width: auto; height: 500px; margin-right: auto;margin-left: auto;"></div></h1>
                 </div>
             </div>
         </div>
@@ -52,10 +49,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="text-center">
-                        <div id="regions_div"
-                             style="auto; height: 400px; margin-right: auto;margin-left: auto; background-color: #fff;border: 1px solid #ccc;"></div>
-                    </h1>
+                    <h1 class="text-center"><div id="regions_div" style="auto; height: 400px; margin-right: auto;margin-left: auto; background-color: #fff;border: 1px solid #ccc;"></div></h1>
                 </div>
             </div>
         </div>
@@ -69,14 +63,10 @@
             </div>
             <div class="row">
                 <div class="col-md-6" align="center">
-                    <h1 class="text-center">
-                        <div id="barchart_values" style="width: auto; height: 500px;"></div>
-                    </h1>
+                    <h1 class="text-center"><div id="barchart_values" style="width: auto; height: 500px;"></div></h1>
                 </div>
                 <div class="col-md-6" align="center">
-                    <h1 class="text-center">
-                        <div id="city_values" style="width: auto; height: 500px;"></div>
-                    </h1>
+                    <h1 class="text-center"><div id="city_values" style="width: auto; height: 500px;"></div></h1>
                 </div>
             </div>
         </div>
@@ -135,23 +125,23 @@
             'packages': ['geochart'],
             // Note: you will need to get a mapsApiKey for your project.
             // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-            'mapsApiKey': '{your key}'
+            'mapsApiKey': '{your map key}'
         });
 
 
         function drawRegionsMap() {
 
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Year');
-            data.addColumn('number', 'be_selected');
-            data.addRows(
+             var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Year');
+                data.addColumn('number', 'be_selected');
+                data.addRows(
                 {{ geo|safe }}
             );
 
             var options = {
-                title: "The frequency of country be selected",
-                colorAxis: {minValue: 0, colors: ['#ffffb2', '#fecc5c', '#fd8d3c', '#f03b20', '#bd0026']},
-                backgroundColor: '#81d4fa',
+                 title: "The frequency of country be selected",
+                colorAxis: {minValue: 0,colors: ['#ffffb2', '#fecc5c', '#fd8d3c','#f03b20','#bd0026']},
+                 backgroundColor: '#81d4fa',
                 datalessRegionColor: '#ffffb2',
             };
 
@@ -161,95 +151,118 @@
         }
 
 
-        function drawIndibar() {
 
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'indicator');
-            data.addColumn('number', 'frequency');
-            data.addRows(
+ function drawIndibar() {
+
+      var data = new google.visualization.DataTable();
+                data.addColumn('string', 'indicator');
+                data.addColumn('number', 'frequency');
+                data.addRows(
                 {{ hel_ind|safe }}
             );
 
-            var view = new google.visualization.DataView(data);
-            view.setColumns([0, 1,
-                {
-                    calc: "stringify",
-                    sourceColumn: 1,
-                    type: "string",
-                    role: "annotation"
-                }]);
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" }]);
 
-            var options = {
-                title: "User login time distribution",
-                bar: {groupWidth: "95%"},
-                legend: {position: "none"},
-            };
-            var chart = new google.visualization.BarChart(document.getElementById("indchart_values"));
-            chart.draw(view, options);
-        }
+      var options = {
+        title: "User login time distribution",
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("indchart_values"));
+      chart.draw(view, options);
+  }
 
 
-        function drawChartbar() {
 
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Hour');
-            data.addColumn('number', 'frequency');
-            data.addRows(
+    function drawChartbar() {
+
+      var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Hour');
+                data.addColumn('number', 'frequency');
+                data.addRows(
                 {{ hour|safe }}
             );
 
-            var view = new google.visualization.DataView(data);
-            view.setColumns([0, 1,
-                {
-                    calc: "stringify",
-                    sourceColumn: 1,
-                    type: "string",
-                    role: "annotation"
-                }]);
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" }]);
 
-            var options = {
-                title: "User login time distribution",
-                bar: {groupWidth: "95%"},
-                legend: {position: "none"},
-            };
-            var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
-            chart.draw(view, options);
-        }
+      var options = {
+        title: "User login time distribution",
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+      chart.draw(view, options);
+  }
 
 
-        function drawCitytbar() {
 
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Hour');
-            data.addColumn('number', 'frequency');
-            data.addRows(
+
+    function drawCitytbar() {
+
+      var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Hour');
+                data.addColumn('number', 'frequency');
+                data.addRows(
                 {{ city|safe }}
             );
 
-            var view = new google.visualization.DataView(data);
-            view.setColumns([0, 1,
-                {
-                    calc: "stringify",
-                    sourceColumn: 1,
-                    type: "string",
-                    role: "annotation"
-                }]);
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" }]);
 
-            var options = {
-                title: "User location distribution",
-                bar: {groupWidth: "95%"},
-                legend: {position: "none"},
-            };
-            var chart = new google.visualization.BarChart(document.getElementById("city_values"));
-            chart.draw(view, options);
-        }
+      var options = {
+        title: "User location distribution",
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("city_values"));
+      chart.draw(view, options);
+  }
+
+
+
+
+
 
 
     </script>
 
 
+{#<p>zheli: {{ action }}</p>#}
+{##}
+{#<table class="columns">#}
+{#    <tbody><tr>#}
+{#        <td>#}
+{#            <div id="piechart" style="border: 1px solid #ccc"></div>#}
+{#        </td>#}
+{#        <td>#}
+{#            <div id="Anthony_chart_div" style="border: 1px solid #ccc"></div>#}
+{#        </td>#}
+{#    </tr>#}
+{##}
+{#</tbody></table>#}
+{#<div id="indchart_values" style="width: 900px; height: 500px;"></div>#}
+{#<div id="regions_div" style="width: 800px; height: 400px; background-color: #fff;border: 1px solid #ccc;"></div>#}
+{#<div id="barchart_values" style="width: 900px; height: 300px;"></div>#}
+{#<div id="city_values" style="width: 900px; height: 300px;"></div>#}
+{##}
+{##}
+{##}
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    </body>
+</body>
 
 {% endblock %}

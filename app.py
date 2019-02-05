@@ -3,7 +3,6 @@
 # Time     : 23/01/2019
 import json
 import os
-
 import country_info, user_action
 import page_set, storage
 import jinja2
@@ -84,7 +83,10 @@ def country():
     form = request.form
     country = form.get("country")
     series, code = storage.get_particular_country_new(particular_index, country)
-    info = country_info.get_country(code)
+    try:
+        info = country_info.get_country(code)
+    except:
+        info = ["Not A Country"] * 7
     len_series = True
     if len(series) <= 1:
         len_series = False

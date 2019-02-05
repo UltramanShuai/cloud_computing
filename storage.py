@@ -2,21 +2,21 @@
 # Author   : Leo
 # Time     : 23/01/2019
 from google.cloud import storage, bigquery
+
 import csv
-import requests_toolbelt.adapters.appengine
 
 global client, bucket
-requests_toolbelt.adapters.appengine.monkeypatch()
-
 client = storage.Client()
-bucket = client.get_bucket('{Your bucket id}')
+bucket = client.get_bucket('{your bucket ID}')
 
 
 def get_geo(indecator):
+    # print "here"
     query_job = bigquery.Client().query("""select country_name,t2.two_alpha_code, year,value
     from `bigquery-public-data.world_bank_health_population.health_nutrition_population` as t1 join
     `bigquery-public-data.world_bank_health_population.country_summary` as t2 on (t1.country_code=t2.country_code)
     where indicator_name="{0}" and upper(country_name)!='WORLD'""".format(indecator))  # API request
+    # print "finish"
     string = "\r\n".join(
         ["\"{0}\",\"{1}\",{2},{3} ".format(row.country_name.replace(u"\u2018", "").replace(u"\u2019", "'").strip(),
                                            row.two_alpha_code,
@@ -30,7 +30,6 @@ def get_geo(indecator):
 
 
 def modify_bucket(filename, text):
-    global client, bucket
     try:
         blob = bucket.get_blob(filename)
         blob.upload_from_string(text)
@@ -69,6 +68,9 @@ def get_statistic_new(indecator):
     return country_number, max_year, min_year, max_value, min_value, min_value, max_value_item, min_value_item, unique_year, unique_country, range_year
 
 
+# print get_statistic_new("% of males ages 15-49 having comprehensive correct knowledge about HIV (2 prevent ways and reject 3 misconceptions)")
+# print get_statistic("% of females ages 15-49 having comprehensive correct knowledge about HIV (2 prevent ways and reject 3 misconceptions)")
+
 def get_particular_year_new(indecator, year):
     data = read_bucket_new(indecator)
     data = csv.reader(data)
@@ -78,12 +80,19 @@ def get_particular_year_new(indecator, year):
     return data
 
 
+# print get_particular_year("% of females ages 15-49 having comprehensive correct knowledge about HIV (2 prevent ways and reject 3 misconceptions)",2005)
+# print get_particular_year_new("% of females ages 15-49 having comprehensive correct knowledge about HIV (2 prevent ways and reject 3 misconceptions)",2005)
+
 def get_particular_country_new(indecator, country):
     data = read_bucket_new(indecator)
     data = csv.reader(data)
     data = [row for row in data]
     return (
     [[row[2], float(row[3])] for row in data if row[0] == country], [row[1] for row in data if row[0] == country][0])
+
+
+# print get_particular_country("% of females ages 15-49 having comprehensive correct knowledge about HIV (2 prevent ways and reject 3 misconceptions)","Tanzania")
+# print get_particular_country_new("% of females ages 15-49 having comprehensive correct knowledge about HIV (2 prevent ways and reject 3 misconceptions)","Tanzania")[1]
 
 
 def get_all_country_new(indecator):
@@ -96,3 +105,6 @@ def get_all_country_new(indecator):
         list.append([year, sum(values) / len(values)])
 
     return list
+
+# print get_all_country("% of females ages 15-49 having comprehensive correct knowledge about HIV (2 prevent ways and reject 3 misconceptions)")
+# print get_all_country_new("% of females ages 15-49 having comprehensive correct knowledge about HIV (2 prevent ways and reject 3 misconceptions)")

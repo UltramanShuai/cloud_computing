@@ -12,19 +12,23 @@ def get_country(code):
     r = requests.get('https://restcountries.eu/rest/v2/alpha/{0}'.format(code))
     # language
     r = r.json()
-    langeuage = [x["name"] for x in r["languages"]]
-    name = r["name"]
-    # flag
+    try:
+        langeuage = [x["name"] for x in r["languages"]]
+        name = r["name"]
+        # flag
 
-    flag = r["flag"]
+        flag = r["flag"]
 
-    # population
-    population = r["population"]
+        # population
+        population = r["population"]
 
-    # region
-    region = r["region"]
+        # region
+        region = r["region"]
 
-    capital = r["capital"]
+        capital = r["capital"]
 
-    area = r["area"]
+        area = r["area"]
+    except:
+        pass
+
     return name, langeuage, region, capital, population, flag, area
