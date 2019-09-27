@@ -32,3 +32,5 @@ Input gcloud app deploy in the commond line under the file which contains .yaml
 
 10.
 open the application web.
+
+The example HTML is closed.
